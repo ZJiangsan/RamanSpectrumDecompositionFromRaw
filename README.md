@@ -1,1 +1,1 @@
-# Decompose measured raw Raman spectrum to different components through deep learning
+# Deep learning in simultaneous component identification and quantification of Raman spectrum 
