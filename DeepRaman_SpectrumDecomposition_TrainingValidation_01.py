@@ -61,7 +61,7 @@ def save_checkpoint_sp(model_path, epoch, LR, name, model, optimizer_gen):
             'state_dict': model.state_dict(),
             'optimizer' : optimizer_gen.state_dict(),
             }
-    torch.save(state, os.path.join(model_path, 'learning_model_{}.pth'.format(name)))
+    torch.save(state, os.path.join(model_path, '{}_RamanSpectrumDecomposition_01.pth'.format(name)))
 #
 def calculate_accuracy(predictions, labels):
     preds = torch.round(predictions)  # Convert probabilities to binary predictions (0 or 1)
@@ -318,7 +318,7 @@ optimizer = torch.optim.Adam(deepRaman.parameters(), lr=0.01)  # Reduced learnin
 #
 ###
 ## load the models if you have trained ones 
-# resume_deepRaman = os.path.join(os.getcwd(), 'learning_model_DeepRaman_1976_0101.pth') # it is the wrong name only
+# resume_deepRaman = os.path.join(os.getcwd(), 'DeepRaman_RamanSpectrumDecomposition_01.pth') # it is the wrong name only
 # checkpoint_deepRaman = torch.load(resume_deepRaman)
 # deepRaman.load_state_dict(checkpoint_deepRaman['state_dict'])
 
@@ -328,7 +328,7 @@ epoch_total = 350000001
 #
 accu_l = 0
 ##
-LR = 0.001
+LR = 0.01
 loss_test_save = np.inf
 loss_train_save = np.inf
 accuray_test_save = 0
@@ -421,7 +421,7 @@ for epoch in range(epoch_init, epoch_total):
         accuray_test_save = accuray_test
         loss_train_save = loss_train_out
         accuray_train_save = accuray_train
-        save_checkpoint_sp(os.getcwd(), 10000, lr_save_loss, "DeepRaman_1976_0101", deepRaman, optimizer) # 32233 is good enough
+        save_checkpoint_sp(os.getcwd(), 10000, lr_save_loss, "DeepRaman", deepRaman, optimizer) # 32233 is good enough
     ##
     # 
     print("")
